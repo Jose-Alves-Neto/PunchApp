@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "jsx": "react-native",
+    "lib": ["es6"],
+    "moduleResolution": "node16",
+    "noEmit": true,
+    "strict": true,
+    "target": "esnext",
+    "sourceRoot": "./src",
+    "sourceMap": true
+  },
+  "exclude": ["PunchClockUpdate/Frontend/configs"]
+}
