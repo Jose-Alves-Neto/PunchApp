@@ -5,64 +5,50 @@ import {
   Text,
   View,
   Dimensions,
+  ScrollView,
 } from 'react-native';
-import { TextInput, Button } from 'react-native-paper'
-import DropDown from "react-native-paper-dropdown";
+import { Button, TextInput } from 'react-native-paper'
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
-const projects = [
-  {
-    label: 'Kinect',
-    value: 'kinect',
-  },
-  {
-    label: 'OpenBot',
-    value: 'openbot',
-  },
-  {
-    label: 'I-Cybie',
-    value: 'icybie',
-  },
-];
 
-export const Login = (navigation) => {
-  const [name, setName] = React.useState('');
-  const [showDropDown, setShowDropDown] = React.useState(false);
-  const [project, setProject] = React.useState('');
+
+export const Login = ({ navigation }) => {
+  const [user_name, setUserName] = React.useState('');
+  const [user_email, setUserEmail] = React.useState('');
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.logo}>PunchApp</Text>
-      <View style={styles.forms}>
-        <TextInput
-          style={styles.input}
-          label='Name'
-          value={name}
-          onChangeText={setName}
-          mode='outlined'
-        />
-        <DropDown
-          mode='outlined'
-          label='Project'
-          list={projects}
-          value={project}
-          setValue={setProject}
-          visible={showDropDown}
-          showDropDown={() => { setShowDropDown(true) }}
-          onDismiss={() => { setShowDropDown(false) }}
-        />
-        <Button
-          style={styles.button}
-          mode='contained'
-          onPress={() => {
-            if (name && project) {
-              console.log('Login', name);
-            }
-          }}>
-          Entrar
-        </Button>
-      </View>
+      <ScrollView>
+        <Text style={styles.logo}>PunchApp</Text>
+        <View style={styles.forms}>
+          <TextInput
+            label='Github Name'
+            value={user_name}
+            onChangeText={setUserName}
+            style={styles.input}
+          />
+          <TextInput
+            label='Github Email'
+            value={user_email}
+            onChangeText={setUserEmail}
+            style={styles.input}
+          />
+          <Button
+            style={styles.button}
+            mode='contained'
+            onPress={() => {
+              if (user_name && user_email) {
+                navigation.navigate('PunchClock', {
+                  user_name,
+                  user_email,
+                });
+              }
+            }}>
+            Entrar
+          </Button>
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };
